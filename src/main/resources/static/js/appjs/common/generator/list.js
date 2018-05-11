@@ -40,6 +40,15 @@ function load() {
 									checkbox : true
 								},
 								{
+									field: 'SerialNumber',
+									title: '序号',
+									formatter: function (value, row, index) {
+										var pageSize = $('#exampleTable').bootstrapTable('getOptions').pageSize;     //通过table的#id 得到每页多少条
+										var pageNumber = $('#exampleTable').bootstrapTable('getOptions').pageNumber; //通过table的#id 得到当前第几页
+										return pageSize * (pageNumber - 1) + index + 1;    // 返回每条的序号： 每页条数 *（当前页 - 1 ）+ 序号
+									}
+								},
+								{
 									field : 'tableName', // 列字段名
 									title : '表名称' // 列标题
 								},
