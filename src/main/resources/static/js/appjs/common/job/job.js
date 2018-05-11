@@ -48,8 +48,16 @@ function load() {
                         checkbox: true
                     },
                     {
+                        field: 'SerialNumber',
+                        title: '序号',
+                        formatter: function (value, row, index) {
+                            return index + 1;
+                        }
+                    },
+                    {
                         field: 'id',
-                        title: 'id'
+                        title: 'id',
+                        visible:false
                     },
                     {
                         field: 'jobName',

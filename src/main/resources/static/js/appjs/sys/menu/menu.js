@@ -21,10 +21,6 @@ var load = function () {
                     {
                         title: '编号',
                         field: 'menuId',
-                        visible: false,
-                        align: 'center',
-                        valign: 'center',
-                        width: '5%'
                     },
                     {
                         title: '名称',

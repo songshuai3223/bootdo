@@ -92,9 +92,17 @@ function load() {
 					{
 						checkbox : true
 					},
+                    {
+                        field: 'SerialNumber',
+                        title: '序号',
+                        formatter: function (value, row, index) {
+                            return index + 1;
+                        }
+                    },
 					{
 						field : 'id',
-						title : '编号'
+						title : '编号',
+						visible:false
 					},
 					{
 						field : 'name',

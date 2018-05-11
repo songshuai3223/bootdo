@@ -56,8 +56,16 @@ function load() {
                         checkbox: true
                     },
                     {
+                        field: 'SerialNumber',
+                        title: '序号',
+                        formatter: function (value, row, index) {
+                            return index + 1;
+                        }
+                    },
+                    {
                         field: 'id', // 列字段名
-                        title: '序号' // 列标题
+                        title: '序号', // 列标题
+                        visible:false
                     },
                     {
                         field: 'userId',

@@ -51,7 +51,7 @@ function load(deptId) {
 					},
                     {
                         field: 'SerialNumber',
-                        title: '序号1',
+                        title: '序号',
                         formatter: function (value, row, index) {
                             return index + 1;
                         }
