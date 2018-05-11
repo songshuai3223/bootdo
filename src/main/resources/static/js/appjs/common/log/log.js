@@ -32,7 +32,7 @@ function load() {
                 pageNumber: 1, // 如果设置了分布，首页页码
                 // search : true, // 是否显示搜索框
                 // showColumns : true, // 是否显示内容下拉框（选择显示的列）
-                sidePagination: "client", // 设置在哪里进行分页，可选值为"client" 或者
+                sidePagination: "server", // 设置在哪里进行分页，可选值为"client" 或者
                 // "server"
                 queryParams: function (params) {
                     return {
@@ -59,15 +59,13 @@ function load() {
                         field: 'SerialNumber',
                         title: '序号',
                         formatter: function (value, row, index) {
-                            var pageSize = $('#exampleTable').bootstrapTable('getOptions').pageSize;     //通过table的#id 得到每页多少条
-                            var pageNumber = $('#exampleTable').bootstrapTable('getOptions').pageNumber; //通过table的#id 得到当前第几页
-                            return pageSize * (pageNumber - 1) + index + 1;    // 返回每条的序号： 每页条数 *（当前页 - 1 ）+ 序号
+                            return index + 1;
                         }
                     },
                     {
                         field: 'id', // 列字段名
                         title: '序号', // 列标题
-                        visible:false
+                        visible:fa
                     },
                     {
                         field: 'userId',
