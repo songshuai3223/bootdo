@@ -65,7 +65,7 @@ function load() {
                     {
                         field: 'id', // 列字段名
                         title: '序号', // 列标题
-                        visible:fa
+                        visible:false
                     },
                     {
                         field: 'userId',
