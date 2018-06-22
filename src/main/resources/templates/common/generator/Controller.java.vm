@@ -102,6 +102,29 @@ public class ${className}Controller {
 		}
 		return R.error();
 	}
+
+    /**
+     * 批量保存
+     */
+    @ResponseBody
+    @PostMapping("/save")
+    @RequiresPermissions("${pathName}:${classname}:batchAdd")
+    public R batchSave( List<${className}DO> ${classname}List){
+        if(${classname}Service.batchSave(${classname}List)>0){
+            return R.ok();
+        }
+        return R.error();
+    }
+    /**
+     * 批量修改
+     */
+    @ResponseBody
+    @RequestMapping("/update")
+    @RequiresPermissions("${pathName}:${classname}:batchEdit")
+    public R batchupdate( List<${className}DO> ${classname}List){
+			${classname}Service.update(${classname}List);
+        return R.ok();
+    }
 	
 	/**
 	 * 删除

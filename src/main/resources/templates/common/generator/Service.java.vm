@@ -25,6 +25,10 @@ public interface ${className}Service {
 	int update(${className}DO ${classname});
 	
 	int remove(${pk.attrType} ${pk.attrname});
+
+    int batchSave(List<${className}DO> ${classname}List);
+
+    int batchUpdate(List<${className}DO> ${classname}List);
 	
 	int batchRemove(${pk.attrType}[] ${pk.attrname}s);
 }

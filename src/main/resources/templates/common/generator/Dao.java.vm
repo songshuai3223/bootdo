@@ -27,6 +27,10 @@ public interface ${className}Dao {
 	int update(${className}DO ${classname});
 	
 	int remove(${pk.attrType} ${pk.columnName});
-	
+
+    int batchSave(List<${className}DO> ${classname}List);
+
+    int batchUpdate(List<${className}DO> ${classname}List);
+
 	int batchRemove(${pk.attrType}[] ${pk.attrname}s);
 }
