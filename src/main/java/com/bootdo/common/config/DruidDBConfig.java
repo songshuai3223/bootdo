@@ -2,9 +2,12 @@ package com.bootdo.common.config;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
+import com.alibaba.druid.wall.WallConfig;
+import com.alibaba.druid.wall.WallFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -13,6 +16,8 @@ import org.springframework.context.annotation.Primary;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by PrimaryKey on 17/2/4.
@@ -98,6 +103,13 @@ public class DruidDBConfig {
         datasource.setTestOnReturn(testOnReturn);
         datasource.setPoolPreparedStatements(poolPreparedStatements);
         datasource.setMaxPoolPreparedStatementPerConnectionSize(maxPoolPreparedStatementPerConnectionSize);
+
+
+
+        List filterList=new ArrayList<>();
+        filterList.add(wallFilter());
+        datasource.setProxyFilters(filterList);
+
         try {
             datasource.setFilters(filters);
         } catch (SQLException e) {
@@ -127,6 +139,24 @@ public class DruidDBConfig {
         filterRegistrationBean.addInitParameter("principalSessionName","USER_SESSION");
         filterRegistrationBean.addInitParameter("DruidWebStatFilter","/*");
         return filterRegistrationBean;
+    }
+
+
+
+    @Bean
+    public WallFilter wallFilter(){
+        WallFilter wallFilter=new WallFilter();
+        wallFilter.setConfig(wallConfig());
+        return wallFilter;
+    }
+
+    @Bean
+    public WallConfig wallConfig(){
+        WallConfig config =new WallConfig();
+        config.setMultiStatementAllow(true);//允许一次执行多条语句
+        config.setNoneBaseStatementAllow(true);//允许非基本语句的其他语句
+        return config;
+
     }
 }
 

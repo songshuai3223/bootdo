@@ -5,8 +5,8 @@
 
     <groupId>com.bootdo</groupId>
     <artifactId>bootdo</artifactId>
-    <version>1.6.0</version>
-    <packaging>war</packaging>
+    <version>1.6.9</version>
+    <packaging>jar</packaging>
 
     <name>bootdo</name>
     <description>Demo project for Spring Boot</description>
@@ -54,7 +54,7 @@
         <dependency>
             <groupId>net.sourceforge.nekohtml</groupId>
             <artifactId>nekohtml</artifactId>
-            <version>1.9.22</version>
+            <version>1.9.15</version>
         </dependency>
         <!--mybatis -->
         <dependency>
@@ -215,11 +215,6 @@
             <version>1.9.2</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
-        </dependency>
         <!--war包部署需要-->
         <!--<dependency>-->
         <!--<groupId>org.springframework.boot</groupId>-->
@@ -240,17 +235,12 @@
         <!--</dependency>-->
     </dependencies>
     <build>
-        <finalName>bootdo</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
                 <configuration>
-                    <warName>bootdo</warName>
+                    <executable>true</executable>
                 </configuration>
             </plugin>
         </plugins>
