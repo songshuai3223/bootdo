@@ -112,11 +112,11 @@
         <set>
 			#foreach($column in $columns)
 				#if($column.columnName != $pk.columnName)
-                    <if test="$column.attrname != null">`$column.columnName` = #{item.$column.attrname}#if($velocityCount != $columns.size()), #end</if>
+                    <if test="item.$column.attrname != null">$column.columnName = #{item.$column.attrname}#if($velocityCount != $columns.size()), #end</if>
 				#end
 			#end
         </set>
-        where ${pk.columnName} = #{${pk.attrname}}
+        where ${pk.columnName} = #{item.${pk.attrname}}
 		</foreach>
     </update>
 

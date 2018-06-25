@@ -122,7 +122,7 @@ public class ${className}Controller {
     @RequestMapping("/update")
     @RequiresPermissions("${pathName}:${classname}:batchEdit")
     public R batchupdate( List<${className}DO> ${classname}List){
-			${classname}Service.update(${classname}List);
+			${classname}Service.batchupdate(${classname}List);
         return R.ok();
     }
 	
