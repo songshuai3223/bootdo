@@ -30,15 +30,15 @@ public class TestDemo {
     public void testTemp(){
         TableService tableService=SpringContextHolder.getBean(TableService.class);
         List<TableDO> list=new ArrayList<>();
-        TableDO tableDO1=tableService.get("admin01");
+        TableDO tableDO1=tableService.get("1");
         tableDO1.setPassword("pass01");
         list.add(tableDO1);
 
-        TableDO tableDO2=tableService.get("admin02");
+        TableDO tableDO2=tableService.get("2");
         tableDO2.setPassword("pass02");
         list.add(tableDO2);
 
-        TableDO tableDO3=tableService.get("admin03");
+        TableDO tableDO3=tableService.get("3");
         tableDO3.setPassword("pass03");
         list.add(tableDO3);
         tableService.batchUpdate(list);
