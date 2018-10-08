@@ -3,13 +3,9 @@
 
 <mapper namespace="${package}.dao.${className}Dao">
 
-	<select id="get" resultType="${package}.domain.${className}DO">
-		select #foreach($column in $columns)`$column.columnName`#if($velocityCount != $columns.size()),#end#end from ${tableName} where ${pk.columnName} = #{value}
-	</select>
-
-	<select id="list" resultType="${package}.domain.${className}DO">
+	<select id="get${className}List" resultType="${package}.domain.${className}DO">
 		select #foreach($column in $columns)`$column.columnName`#if($velocityCount != $columns.size()),#end#end from ${tableName}
-        <where>  
+        <where>
 		  #foreach($column in $columns)
 		  <if test="$column.attrname != null and $column.attrname.trim() != ''"> and $column.columnName = #{$column.attrname} </if>
 		  #end
@@ -26,54 +22,9 @@
 			limit #{offset}, #{limit}
 		</if>
 	</select>
-	
- 	<select id="count" resultType="int">
-		select count(*) from ${tableName}
-		 <where>  
-		  #foreach($column in $columns)
-		  <if test="$column.attrname != null and $column.attrname.trim() != ''"> and $column.columnName = #{$column.attrname} </if>
-		  #end
-		</where>
-	</select>
-	 
-	<insert id="save" parameterType="${package}.domain.${className}DO"#if($pk.extra == 'auto_increment') useGeneratedKeys="true" keyProperty="$pk.attrname"#end>
-		insert into ${tableName}
-		(
-			  #foreach($column in $columns)
-				#if($column.columnName != $pk.columnName || $pk.extra != 'auto_increment')
-							`$column.columnName`#if($velocityCount != $columns.size()), #end
-				#end
-			  #end
-		)
-		values(
-			#foreach($column in $columns)
-				#if($column.columnName != $pk.columnName || $pk.extra != 'auto_increment')
-							#{$column.attrname}#if($velocityCount != $columns.size()),
-				#end
 
-				#end
-			#end
-		)
-	</insert>
-
-	<update id="update" parameterType="${package}.domain.${className}DO">
-		update ${tableName}
-		<set>
-			#foreach($column in $columns)
-				#if($column.columnName != $pk.columnName)
-					<if test="$column.attrname != null">`$column.columnName` = #{$column.attrname}#if($velocityCount != $columns.size()), #end</if>
-				#end
-			#end
-		</set>
-		where ${pk.columnName} = #{${pk.attrname}}
-	</update>
-	
-	<delete id="remove">
-		delete from ${tableName} where ${pk.columnName} = #{value}
-	</delete>
-	
-	<delete id="batchRemove">
-		delete from ${tableName} where ${pk.columnName} in 
+	<delete id="batchRemove${className}">
+		delete from ${tableName} where ${pk.columnName} in
 		<foreach item="${pk.attrname}" collection="array" open="(" separator="," close=")">
 			#{${pk.attrname}}
 		</foreach>
@@ -81,7 +32,7 @@
 
 
 
-    <insert id="batchSave" parameterType="java.util.List" #if($pk.extra == 'auto_increment') useGeneratedKeys="true" keyProperty="$pk.attrname"#end>
+    <insert id="batchSave${className}" parameterType="java.util.List" #if($pk.extra == 'auto_increment') useGeneratedKeys="true" keyProperty="$pk.attrname"#end>
         insert into ${tableName}
         (
 		#foreach($column in $columns)
@@ -105,7 +56,7 @@
     </insert>
 
 
-    <update id="batchUpdate" parameterType="java.util.List">
+    <update id="batchUpdate${className}" parameterType="java.util.List">
         <foreach collection="list" item="item" index="index" open="" close="" separator=";">
         update ${tableName}
         <set>

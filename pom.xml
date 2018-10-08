@@ -25,6 +25,7 @@
         <mybatisplus-spring-boot-starter.version>1.0.4</mybatisplus-spring-boot-starter.version>
         <velocity.version>1.7</velocity.version>
         <activiti.version>5.22.0</activiti.version>
+        <lombok.version>1.16.20</lombok.version>
     </properties>
 
     <dependencies>
@@ -215,6 +216,20 @@
             <version>1.9.2</version>
         </dependency>
 
+        <!---->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--mapper-->
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper-spring-boot-starter</artifactId>
+            <version>1.1.0</version>
+        </dependency>
         <!--war包部署需要-->
         <!--<dependency>-->
         <!--<groupId>org.springframework.boot</groupId>-->

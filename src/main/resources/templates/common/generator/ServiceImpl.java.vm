@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import lombok.extern.java.Log;
 
 import ${package}.dao.${className}Dao;
 import ${package}.domain.${className}DO;
@@ -12,54 +13,55 @@ import ${package}.service.${className}Service;
 
 
 
-@Service
+@Service("${classname}Service")
+@Log
 public class ${className}ServiceImpl implements ${className}Service {
 	@Autowired
 	private ${className}Dao ${classname}Dao;
 	
 	@Override
-	public ${className}DO get(${pk.attrType} ${pk.attrname}){
-		return ${classname}Dao.get(${pk.attrname});
+	public ${className}DO get${className}(${className}DO ${classname}){
+		return ${classname}Dao.selectByPrimaryKey(${classname});
 	}
 	
 	@Override
-	public List<${className}DO> list(Map<String, Object> map){
-		return ${classname}Dao.list(map);
+	public List<${className}DO> get${className}list(${className}DO ${classname}){
+		return ${classname}Dao.select(${classname});
 	}
 	
 	@Override
-	public int count(Map<String, Object> map){
-		return ${classname}Dao.count(map);
+	public int count${className}(${className}DO ${classname}){
+		return ${classname}Dao.selectCount(${classname});
 	}
 	
 	@Override
-	public int save(${className}DO ${classname}){
-		return ${classname}Dao.save(${classname});
+	public int save${className}(${className}DO ${classname}){
+		return ${classname}Dao.insertSelective(${classname});
 	}
 	
 	@Override
-	public int update(${className}DO ${classname}){
-		return ${classname}Dao.update(${classname});
+	public int update${className}(${className}DO ${classname}){
+		return ${classname}Dao.updateByPrimaryKeySelective(${classname});
 	}
 	
 	@Override
-	public int remove(${pk.attrType} ${pk.attrname}){
-		return ${classname}Dao.remove(${pk.attrname});
+	public int remove${className}(${pk.attrType} ${pk.attrname}){
+		return ${classname}Dao.deleteByPrimaryKey(${pk.attrname});
 	}
 
     @Override
-    public int batchSave(List<${className}DO> ${classname}List) {
-        return ${classname}Dao.batchSave(${classname}List);
+    public int batchSave${className}(List<${className}DO> ${classname}List) {
+        return ${classname}Dao.batchSave${className}(${classname}List);
     }
 
     @Override
-    public int batchUpdate(List<${className}DO> ${classname}List) {
-        return ${classname}Dao.batchUpdate(${classname}List);
+    public int batchUpdate${className}(List<${className}DO> ${classname}List) {
+        return ${classname}Dao.batchUpdate${className}(${classname}List);
     }
 	
 	@Override
-	public int batchRemove(${pk.attrType}[] ${pk.attrname}s){
-		return ${classname}Dao.batchRemove(${pk.attrname}s);
+	public int batchRemove${className}(${pk.attrType}[] ${pk.attrname}s){
+		return ${classname}Dao.batchRemove${className}(${pk.attrname}s);
 	}
 	
 }

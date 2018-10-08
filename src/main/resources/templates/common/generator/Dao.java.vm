@@ -5,7 +5,7 @@ import ${package}.domain.${className}DO;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Mapper;
+import tk.mybatis.mapper.common.Mapper;
 
 /**
  * ${comments}
@@ -14,23 +14,27 @@ import org.apache.ibatis.annotations.Mapper;
  * @date ${datetime}
  */
 @Mapper
-public interface ${className}Dao {
+public interface ${className}Dao extends Mapper<${className}DO>{
 
-	${className}DO get(${pk.attrType} ${pk.attrname});
-	
-	List<${className}DO> list(Map<String,Object> map);
-	
-	int count(Map<String,Object> map);
-	
-	int save(${className}DO ${classname});
-	
-	int update(${className}DO ${classname});
-	
-	int remove(${pk.attrType} ${pk.columnName});
+    List<${className}DO> get${className}List(Map<String,Object> map);
+    /***
+    * 批量插入${className}List
+    * @param ${classname}List
+    * @return
+    */
+    int batchSave${className}(List<${className}DO> ${classname}List);
 
-    int batchSave(List<${className}DO> ${classname}List);
+    /***
+     * 批量修改${className}List
+     * @param ${classname}List
+     * @return
+     */
+    int batchUpdate${className}(List<${className}DO> ${classname}List);
 
-    int batchUpdate(List<${className}DO> ${classname}List);
-
-	int batchRemove(${pk.attrType}[] ${pk.attrname}s);
+    /***
+     * 批量删除${className}List
+     * @param ${classname}List
+     * @return
+     */
+	int batchRemove${className}(${pk.attrType}[] ${pk.attrname}s);
 }
