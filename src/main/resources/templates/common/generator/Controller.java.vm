@@ -34,19 +34,28 @@ import com.bootdo.common.utils.R;
 public class ${className}Controller {
 	@Autowired
 	private ${className}Service ${classname}Service;
-	
+
+    /***
+     * 生成${className}页面链接
+     * @return
+     */
 	@GetMapping()
 	@RequiresPermissions("${pathName}:${classname}:${classname}")
 	String ${className}(){
 	    return "${pathName}/${classname}/${classname}";
 	}
-	
+
+    /***
+     * 生成${className}查询列表
+	 * @param ${classname}
+     * @return
+     */
 	@ResponseBody
 	@GetMapping("/list")
 	@RequiresPermissions("${pathName}:${classname}:${classname}")
-	public PageUtils list(@RequestParam Map<String, Object> params){
+	public PageUtils list(@RequestParam ${className}DO ${classname}){
 		//查询列表数据
-        Query query = new Query(params);
+        Query query = new Query(${classname});
 		List<${className}DO> ${classname}List = ${classname}Service.list(query);
 		int total = ${classname}Service.count(query);
 		PageUtils pageUtils = new PageUtils(${classname}List, total);
